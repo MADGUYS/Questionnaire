@@ -23,13 +23,15 @@
     
     [super awakeFromNib];
     
-    UIImage *image = [[UIImage imageNamed:@"Background"] resizableImageWithCapInsets:UIEdgeInsetsMake(10.0, 10.0, 10.0, 10.0)];
+    UIImage *image = [[UIImage imageNamed:@"background.png"] resizableImageWithCapInsets:UIEdgeInsetsMake(10.0, 10.0, 10.0, 10.0)];
     
     self.imageView.image = [image imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
     
     self.imageView.tintColor = self.color;
     
     self.nameLabel.text = self.title;
+    
+    [self.answerLabel setAdjustsFontSizeToFitWidth:YES];
 }
 
 #pragma mark - Accessors

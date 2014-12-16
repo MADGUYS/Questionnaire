@@ -164,6 +164,8 @@
     }
     cell.color = [UIColor randomColor];
     
+    cell.countLabel.text = [NSString stringWithFormat:@"%d",indexPath.row+1];
+    
     return cell;
 }
 

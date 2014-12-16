@@ -19,7 +19,7 @@
                         <color key="tintColor" red="0.79478405279999997" green="0.61061706299999996" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                     </imageView>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Quesion" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GCC-8N-Y4e">
-                        <rect key="frame" x="20" y="20" width="280" height="61"/>
+                        <rect key="frame" x="20" y="29" width="280" height="61"/>
                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                         <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <nil key="highlightedColor"/>
@@ -30,12 +30,19 @@
                         <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <nil key="highlightedColor"/>
                     </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="0" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GCm-6o-t0X">
+                        <rect key="frame" x="267" y="7" width="48" height="23"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                        <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <nil key="highlightedColor"/>
+                    </label>
                 </subviews>
                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
             </view>
             <size key="customSize" width="166" height="166"/>
             <connections>
                 <outlet property="answerLabel" destination="Lh7-Ed-FMo" id="4Kc-v5-BzE"/>
+                <outlet property="countLabel" destination="GCm-6o-t0X" id="zAp-Vi-Koi"/>
                 <outlet property="imageView" destination="nRJ-sN-HFV" id="UYr-gA-eNA"/>
                 <outlet property="nameLabel" destination="GCC-8N-Y4e" id="FFL-oX-k6I"/>
             </connections>
