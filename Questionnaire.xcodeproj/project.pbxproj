@@ -237,18 +237,7 @@
 		9F41B13B1A3EB8FE0064D236 = {
 			isa = PBXGroup;
 			children = (
-				9F41B1A61A3EDDBE0064D236 /* libz.dylib */,
-				9F41B1A41A3EDDB40064D236 /* MobileCoreServices.framework */,
-				9F41B1A21A3EDD8A0064D236 /* AudioToolbox.framework */,
-				9F41B1A01A3EDD610064D236 /* SystemConfiguration.framework */,
-				9F41B19E1A3EDD1D0064D236 /* AVFoundation.framework */,
-				9F41B19C1A3ED49A0064D236 /* QuartzCore.framework */,
-				9F41B19A1A3ED48E0064D236 /* UIKit.framework */,
-				9F41B1981A3ED47E0064D236 /* libc++.dylib */,
-				9F41B1961A3ED4680064D236 /* CoreGraphics.framework */,
-				9F41B1941A3ED4540064D236 /* Foundation.framework */,
-				9F41B1921A3ED4280064D236 /* CFNetwork.framework */,
-				9F41B1901A3ED40F0064D236 /* libsqlite3.0.dylib */,
+				F84A73AE1A40212C004BD3F3 /* Frameworks */,
 				9F41B1461A3EB8FE0064D236 /* Questionnaire */,
 				9F41B1601A3EB8FE0064D236 /* QuestionnaireTests */,
 				9F41B1451A3EB8FE0064D236 /* Products */,
@@ -267,24 +256,18 @@
 		9F41B1461A3EB8FE0064D236 /* Questionnaire */ = {
 			isa = PBXGroup;
 			children = (
-				9FC79FE21A3F51BB00045154 /* background.png */,
-				9FC79FE31A3F51BB00045154 /* background@2x.png */,
-				9FC79FC81A3F3A2000045154 /* TGLStackedViewController */,
-				9F4064361A3EFE05004DC5D8 /* LeftViewController.h */,
-				9F4064371A3EFE05004DC5D8 /* LeftViewController.m */,
-				9F4064381A3EFE05004DC5D8 /* PaperFold */,
-				9F4064501A3EFE05004DC5D8 /* RightViewController.h */,
-				9F4064511A3EFE05004DC5D8 /* RightViewController.m */,
-				9F41B18E1A3ED3060064D236 /* SyncDataBase.sqlite */,
-				9F41B17B1A3ED0970064D236 /* FMDB */,
-				9F41B1781A3EC0000064D236 /* CommonAppManager.h */,
-				9F41B1791A3EC0000064D236 /* CommonAppManager.m */,
-				9F41B16D1A3EB9B20064D236 /* parse-library-1.6.0 */,
+				F84A73AC1A4020F0004BD3F3 /* Third-Party Libraries */,
 				9F41B14B1A3EB8FE0064D236 /* AppDelegate.h */,
 				9F41B14C1A3EB8FE0064D236 /* AppDelegate.m */,
 				9F41B14E1A3EB8FE0064D236 /* ViewController.h */,
 				9F41B14F1A3EB8FE0064D236 /* ViewController.m */,
 				9FC79FC61A3F047400045154 /* ViewController.xib */,
+				9F41B1781A3EC0000064D236 /* CommonAppManager.h */,
+				9F41B1791A3EC0000064D236 /* CommonAppManager.m */,
+				9F4064361A3EFE05004DC5D8 /* LeftViewController.h */,
+				9F4064371A3EFE05004DC5D8 /* LeftViewController.m */,
+				9F4064501A3EFE05004DC5D8 /* RightViewController.h */,
+				9F4064511A3EFE05004DC5D8 /* RightViewController.m */,
 				9F41B1541A3EB8FE0064D236 /* Images.xcassets */,
 				9F41B1561A3EB8FE0064D236 /* LaunchScreen.xib */,
 				9F41B1471A3EB8FE0064D236 /* Supporting Files */,
@@ -295,6 +278,8 @@
 		9F41B1471A3EB8FE0064D236 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				9F41B18E1A3ED3060064D236 /* SyncDataBase.sqlite */,
+				F84A73AD1A40210F004BD3F3 /* Images */,
 				9F41B1481A3EB8FE0064D236 /* Info.plist */,
 				9F41B1491A3EB8FE0064D236 /* main.m */,
 			);
@@ -374,6 +359,45 @@
 				9FC79FDF1A3F476600045154 /* MyCustomCell.xib */,
 			);
 			path = CustomCollectionCell;
+			sourceTree = "<group>";
+		};
+		F84A73AC1A4020F0004BD3F3 /* Third-Party Libraries */ = {
+			isa = PBXGroup;
+			children = (
+				9FC79FC81A3F3A2000045154 /* TGLStackedViewController */,
+				9F4064381A3EFE05004DC5D8 /* PaperFold */,
+				9F41B17B1A3ED0970064D236 /* FMDB */,
+				9F41B16D1A3EB9B20064D236 /* parse-library-1.6.0 */,
+			);
+			name = "Third-Party Libraries";
+			sourceTree = "<group>";
+		};
+		F84A73AD1A40210F004BD3F3 /* Images */ = {
+			isa = PBXGroup;
+			children = (
+				9FC79FE21A3F51BB00045154 /* background.png */,
+				9FC79FE31A3F51BB00045154 /* background@2x.png */,
+			);
+			name = Images;
+			sourceTree = "<group>";
+		};
+		F84A73AE1A40212C004BD3F3 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				9F41B1A61A3EDDBE0064D236 /* libz.dylib */,
+				9F41B1A41A3EDDB40064D236 /* MobileCoreServices.framework */,
+				9F41B1A21A3EDD8A0064D236 /* AudioToolbox.framework */,
+				9F41B1A01A3EDD610064D236 /* SystemConfiguration.framework */,
+				9F41B19E1A3EDD1D0064D236 /* AVFoundation.framework */,
+				9F41B19C1A3ED49A0064D236 /* QuartzCore.framework */,
+				9F41B19A1A3ED48E0064D236 /* UIKit.framework */,
+				9F41B1981A3ED47E0064D236 /* libc++.dylib */,
+				9F41B1961A3ED4680064D236 /* CoreGraphics.framework */,
+				9F41B1941A3ED4540064D236 /* Foundation.framework */,
+				9F41B1921A3ED4280064D236 /* CFNetwork.framework */,
+				9F41B1901A3ED40F0064D236 /* libsqlite3.0.dylib */,
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
