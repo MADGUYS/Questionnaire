@@ -50,13 +50,16 @@ static CommonAppManager *_sharedAppManager;
 
 -(void)resetTotalAppData
 {
+    self.selectedFilter = nil;
+    self.selectedLevel = nil;
     self.levelsArray = nil;
     self.filtersArray = nil;
     self.questionsArray = nil;
     
-    self.levelsArray = [[NSArray alloc] initWithArray:[self getAllLevelsList]];
-    self.filtersArray = [[NSArray alloc] initWithArray:[self getAllFiltersList]];
+    //self.levelsArray = [[NSArray alloc] initWithArray:[self getAllLevelsList]];
+    //self.filtersArray = [[NSArray alloc] initWithArray:[self getAllFiltersList]];
     self.questionsArray = [[NSArray alloc] initWithArray:[self getAllQuestionsFromPrase]];
+    
     
     [self saveDataToLocalDB];
     
@@ -70,28 +73,28 @@ static CommonAppManager *_sharedAppManager;
     
     int status =  [[DBManager sharedAppManager] createTableWithName:@"Questions" withColoumns:[NSArray arrayWithObjects:QuestionKey,AnswerKey,LevelKey,FilterKey, nil]];
     
+//    NSLog(@"%d status",status);
+//    
+//    status = [[DBManager sharedAppManager] createTableWithName:@"Levels" withColoumns:[NSArray arrayWithObjects:LevelKey, nil]];
+//    
+//    NSLog(@"%d status",status);
+//    
+//    status = [[DBManager sharedAppManager] createTableWithName:@"Filters" withColoumns:[NSArray arrayWithObjects:FilterKey, nil]];
+    
     NSLog(@"%d status",status);
     
-    status = [[DBManager sharedAppManager] createTableWithName:@"Levels" withColoumns:[NSArray arrayWithObjects:LevelKey, nil]];
-    
-    NSLog(@"%d status",status);
-    
-    status = [[DBManager sharedAppManager] createTableWithName:@"Filters" withColoumns:[NSArray arrayWithObjects:FilterKey, nil]];
-    
-    NSLog(@"%d status",status);
-    
-    for (int i=0; i<[self.levelsArray count]; i++) {
-        PFObject *levelObject = [self.levelsArray objectAtIndex:i];
-         int result = [[DBManager sharedAppManager] insertRowIntoTable:@"Levels" values:levelObject];
-        NSLog(@"Level Row Insert result = %d",result);
-    }
-    
-    for (int i=0; i<[self.filtersArray count]; i++) {
-        PFObject *filterObject = [self.filtersArray objectAtIndex:i];
-        int result = [[DBManager sharedAppManager] insertRowIntoTable:@"Filters" values:filterObject];
-        NSLog(@"filter Row Insert result = %d",result);
-
-    }
+//    for (int i=0; i<[self.levelsArray count]; i++) {
+//        PFObject *levelObject = [self.levelsArray objectAtIndex:i];
+//         int result = [[DBManager sharedAppManager] insertRowIntoTable:@"Levels" values:levelObject];
+//        NSLog(@"Level Row Insert result = %d",result);
+//    }
+//    
+//    for (int i=0; i<[self.filtersArray count]; i++) {
+//        PFObject *filterObject = [self.filtersArray objectAtIndex:i];
+//        int result = [[DBManager sharedAppManager] insertRowIntoTable:@"Filters" values:filterObject];
+//        NSLog(@"filter Row Insert result = %d",result);
+//
+//    }
     
     for (int i=0; i<[self.questionsArray count]; i++) {
         PFObject *questionObject = [self.questionsArray objectAtIndex:i];
@@ -109,9 +112,16 @@ static CommonAppManager *_sharedAppManager;
     self.filtersArray = nil;
     self.questionsArray = nil;
     
-    self.levelsArray = [[NSArray alloc] initWithArray:[[DBManager sharedAppManager] fetchAllRowsFromTable:@"Levels"]];
+    self.levelsArray = [[NSArray alloc] initWithArray:[[DBManager sharedAppManager] fetchColounFromAllRowsFromTable:@"Questions" ColoumnName:LevelKey]];
     
-    self.filtersArray = [[NSArray alloc] initWithArray:[[DBManager sharedAppManager] fetchAllRowsFromTable:@"Filters"]];
+    self.filtersArray =  [[NSArray alloc] initWithArray:[[DBManager sharedAppManager] fetchColounFromAllRowsFromTable:@"Questions" ColoumnName:FilterKey]];
+    
+    NSSet *levelsSet = [NSSet setWithArray:self.levelsArray];
+    self.levelsArray = [levelsSet allObjects];
+    
+    
+    NSSet *filtersSet = [NSSet setWithArray:self.filtersArray];
+    self.filtersArray = [filtersSet allObjects];
     
     [self getNewListOfQuestions];
 

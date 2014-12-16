@@ -99,8 +99,8 @@ typedef NS_ENUM(NSInteger, TGLStackedViewControllerScrollDirection) {
 
     _exposedLayoutMargin = UIEdgeInsetsMake(40.0, 0.0, 0.0, 0.0);
     _exposedItemSize = CGSizeZero;
-    _exposedTopOverlap = 20.0;
-    _exposedBottomOverlap = 20.0;
+    _exposedTopOverlap = 40.0;
+    _exposedBottomOverlap = 40.0;
     _exposedBottomOverlapCount = 1;
 }
 
@@ -245,7 +245,7 @@ typedef NS_ENUM(NSInteger, TGLStackedViewControllerScrollDirection) {
     // Overload this method to prevent items
     // from being dragged to another location
     //
-    return YES;
+    return NO;
 }
 
 - (NSIndexPath *)targetIndexPathForMoveFromItemAtIndexPath:(NSIndexPath *)sourceIndexPath toProposedIndexPath:(NSIndexPath *)proposedDestinationIndexPath {

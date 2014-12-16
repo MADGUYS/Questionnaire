@@ -7,6 +7,8 @@
 //
 
 #import "MyCustomCell.h"
+#import <UIKit/UIKit.h>
+#import <QuartzCore/QuartzCore.h>
 
 @implementation MyCustomCell
 
@@ -15,6 +17,8 @@
     self = [super initWithFrame:frame];
     if (self) {
         // Initialization code
+        
+        
     }
     return self;
 }
@@ -23,15 +27,53 @@
     
     [super awakeFromNib];
     
-    UIImage *image = [[UIImage imageNamed:@"background.png"] resizableImageWithCapInsets:UIEdgeInsetsMake(10.0, 10.0, 10.0, 10.0)];
+    self.contentView.frame = CGRectMake(self.contentView.frame.origin.x, self.contentView.frame.origin.y,[UIScreen mainScreen].bounds.size.width, self.contentView.frame.size.height);
     
-    self.imageView.image = [image imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
+    self.contentView.backgroundColor  = [UIColor colorWithPatternImage:[UIImage imageNamed:@"Texture.png"]];
     
-    self.imageView.tintColor = self.color;
+    UIImage *image = [[UIImage imageNamed:@"Texture.png"] resizableImageWithCapInsets:UIEdgeInsetsMake(10.0, 10.0, 10.0, 10.0)];
     
-    self.nameLabel.text = self.title;
+    //self.imageView.image = [image imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
     
-    [self.answerLabel setAdjustsFontSizeToFitWidth:YES];
+
+    
+ 
+    [self.contentView.layer setCornerRadius:20];
+    [self.contentView.layer setMasksToBounds:YES];
+    [self.contentView.layer setBorderColor:[UIColor clearColor].CGColor];
+    [self.contentView.layer setBorderWidth:2];
+    
+    [self.layer setBorderColor:[UIColor colorWithRed:213.0/255.0f green:210.0/255.0f blue:199.0/255.0f alpha:1.0f].CGColor];
+    [self.layer setBorderWidth:1.0f];
+    [self.layer setCornerRadius:20.0f];
+    [self.layer setShadowOffset:CGSizeMake(0, 1)];
+    [self.layer setShadowColor:[[UIColor darkGrayColor] CGColor]];
+    [self.layer setShadowRadius:8.0];
+    [self.layer setShadowOpacity:0.8];
+    [self.layer setMasksToBounds:NO];
+
+}
+
+- (UIImage *)generatePhotoStackWithImage:(UIImage *)image {
+    CGSize newSize = CGSizeMake(image.size.width + 70, image.size.height + 70);
+    CGRect rect = CGRectMake(25, 25, image.size.width, image.size.height);
+    
+    UIGraphicsBeginImageContextWithOptions(newSize, NO, image.scale); {
+        CGContextRef context = UIGraphicsGetCurrentContext();
+        //Shadow
+        CGContextSetShadowWithColor(context, CGSizeMake(0, 0), 10, [UIColor colorWithRed:0.0f green:0.0f blue:0.0f alpha:0.5f].CGColor);
+        
+        CGContextBeginTransparencyLayer (context, NULL);
+        //Draw
+        [image drawInRect:rect blendMode:kCGBlendModeNormal alpha:1.0];
+        CGContextSetRGBStrokeColor(context, 1.0, 1.0, 1.0, 1.0);
+        CGContextStrokeRectWithWidth(context, rect, 40);
+        CGContextEndTransparencyLayer(context);
+    }
+    UIImage *result =  UIGraphicsGetImageFromCurrentImageContext();
+    UIGraphicsEndImageContext();
+    
+    return result;
 }
 
 #pragma mark - Accessors
@@ -45,7 +87,7 @@
 - (void)setColor:(UIColor *)color {
     
     _color = [color copy];
-    self.imageView.tintColor = self.color;
+    //self.imageView.tintColor = self.color;
 }
 
 

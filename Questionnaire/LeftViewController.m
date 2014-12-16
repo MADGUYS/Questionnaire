@@ -22,10 +22,8 @@
     if (self) {
         // Custom initialization
         
-        
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(syncComplete) name:@"SyncCompleted" object:nil];
 
-        
     }
     return self;
 }
@@ -57,25 +55,69 @@
     
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     if (!cell) cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
-    if (object) {
+    if (object && ![[object valueForKey:LevelKey] isKindOfClass:[NSNull class]]) {
         
+        cell.textLabel.textColor =[UIColor whiteColor];
         cell.textLabel.text = [object valueForKey:LevelKey];
 
     }
+    if (indexPath.row%2 == 0) {
+        cell.backgroundColor = [UIColor grayColor];
+        
+    }
+    else{
+        
+        cell.backgroundColor = [UIColor lightGrayColor];
+        
+    }
     return cell;
+}
+
+- (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
+    
+    UIView *headerView = [[UIView alloc] initWithFrame:CGRectMake(0,0,tableView.frame.size.width,40)];
+    [headerView setBackgroundColor:[UIColor lightGrayColor]];
+    
+    UIButton *addButton = [[UIButton alloc] init];
+        [addButton setTitle:@"Sync" forState:UIControlStateNormal];
+    addButton.backgroundColor = [UIColor clearColor];
+    [addButton setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+    [addButton setFrame:CGRectMake(tableView.frame.size.width-90, 0, 90, 40)];
+    [addButton addTarget:self action:@selector(syncTapped) forControlEvents:UIControlEventTouchUpInside];
+    [headerView addSubview:addButton];
+    
+    return headerView;
+    
+}
+
+-(float)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
+    
+    return  40.0;
 }
 
 #pragma mark - Table view delegate
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    PFObject *object = [[[CommonAppManager sharedAppManager] filtersArray] objectAtIndex:indexPath.row];
-    
-    [[CommonAppManager sharedAppManager] setSelectedLevel:[object valueForKey:LevelKey]];
-    
-    [[CommonAppManager sharedAppManager] getNewListOfQuestions];
+    PFObject *object = [[[CommonAppManager sharedAppManager] levelsArray] objectAtIndex:indexPath.row];
+   
+    if (object && ![[object valueForKey:LevelKey] isKindOfClass:[NSNull class]]) {
+
+        [[CommonAppManager sharedAppManager] setSelectedLevel:[object valueForKey:LevelKey]];
+        [[CommonAppManager sharedAppManager] getNewListOfQuestions];
+    }
     
     [[NSNotificationCenter defaultCenter] postNotificationName:@"ShowDefaultView" object:nil];
+
+}
+
+-(void)syncTapped
+{
+    
+    [[CommonAppManager sharedAppManager] sync];
+    
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"ShowDefaultView" object:nil];
+
 }
 
 @end

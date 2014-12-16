@@ -50,25 +50,61 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return [[CommonAppManager sharedAppManager] filtersArray].count;
+    return ([[CommonAppManager sharedAppManager] filtersArray].count+1);
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     static NSString *CellIdentifier = @"Cell";
    
-    PFObject *object = [[[CommonAppManager sharedAppManager] filtersArray] objectAtIndex:indexPath.row];
-
     
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     if (!cell) cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
     
-    if (object) {
+    if (indexPath.row == 0) {
         
-        cell.textLabel.text = [object valueForKey:FilterKey];
+        cell.textLabel.text = @"All";
+
         
     }
+    
+    else{
+        
+        PFObject *object = [[[CommonAppManager sharedAppManager] filtersArray] objectAtIndex:indexPath.row-1];
+
+        if (object && ![[object valueForKey:FilterKey] isKindOfClass:[NSNull class]]) {
+            
+            cell.textLabel.textColor = [UIColor whiteColor];
+            cell.textLabel.text = [object valueForKey:FilterKey];
+            
+        }
+    }
+    
+    if (indexPath.row%2 == 0) {
+        cell.backgroundColor = [UIColor grayColor];
+        
+    }
+    else{
+        
+        cell.backgroundColor = [UIColor lightGrayColor];
+        
+    }
+    
     return cell;
+}
+
+- (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
+    
+    UIView *headerView = [[UIView alloc] initWithFrame:CGRectMake(0,0,tableView.frame.size.width,40)];
+    [headerView setBackgroundColor:[UIColor lightGrayColor]];
+    
+    return headerView;
+    
+}
+
+-(float)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
+    
+    return  0.0;
 }
 
 #pragma mark - Table view delegate
@@ -76,13 +112,23 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
    
-    
-    PFObject *object = [[[CommonAppManager sharedAppManager] filtersArray] objectAtIndex:indexPath.row];
+    if (indexPath.row == 0) {
+        
+        [[CommonAppManager sharedAppManager] setSelectedFilter:nil];
 
-    [[CommonAppManager sharedAppManager] setSelectedFilter:[object valueForKey:FilterKey]];
+    }
+    else{
+     
+        PFObject *object = [[[CommonAppManager sharedAppManager] filtersArray] objectAtIndex:indexPath.row-1];
+        
+        if (object && ![[object valueForKey:FilterKey] isKindOfClass:[NSNull class]]) {
+
+        [[CommonAppManager sharedAppManager] setSelectedFilter:[object valueForKey:FilterKey]];
+
+        }
+    }
     
     [[CommonAppManager sharedAppManager] getNewListOfQuestions];
-    
     [[NSNotificationCenter defaultCenter] postNotificationName:@"ShowDefaultView" object:nil];
     
 }

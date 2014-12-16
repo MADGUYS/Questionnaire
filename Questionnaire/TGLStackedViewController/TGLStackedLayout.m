@@ -58,8 +58,8 @@
 
 - (void)initLayout {
     
-    self.layoutMargin = UIEdgeInsetsMake(20.0, 0.0, 0.0, 0.0);
-    self.topReveal = 120.0;
+    self.layoutMargin = UIEdgeInsetsMake(0.0, 0.0, 0.0, 0.0);
+    self.topReveal = 100.0;
     self.bounceFactor = 0.2;
 }
 

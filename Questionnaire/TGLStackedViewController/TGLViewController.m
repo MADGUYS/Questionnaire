@@ -64,11 +64,12 @@
 
     [super viewDidLoad];
     
-    [self.view setBackgroundColor:[UIColor whiteColor]];
+    self.view.frame = [UIScreen mainScreen].bounds;
+
+    self.collectionView.frame = self.view.frame;
+    
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(syncComplete) name:@"SyncCompleted" object:nil];
     
-
-
     // Set to NO to prevent a small number
     // of cards from filling the entire
     // view height evenly and only show
@@ -95,16 +96,7 @@
    
     [self.collectionView registerNib:cellNib forCellWithReuseIdentifier:@"CardCell"];
     
-    
-//    if (self.doubleTapToClose) {
-//        
-//        UITapGestureRecognizer *recognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(handleDoubleTap:)];
-//        
-//        recognizer.delaysTouchesBegan = YES;
-//        recognizer.numberOfTapsRequired = 2;
-//        
-//        [self.collectionView addGestureRecognizer:recognizer];
-//    }
+
 }
 
 - (UIStatusBarStyle)preferredStatusBarStyle {
@@ -155,14 +147,26 @@
     NSDictionary *card = [[CommonAppManager sharedAppManager] questionsArray][indexPath.item];
     
     if (![card[QuestionKey] isKindOfClass:[NSNull class]]) {
+        [cell.nameLabel setTextColor:[UIColor randomColor]];
         cell.title = card[QuestionKey];
+        cell.countLabel.textColor = [cell.nameLabel textColor];
+        
     }
     if (![card[AnswerKey] isKindOfClass:[NSNull class]]) {
         
+        cell.answerLabel.textColor = [cell.nameLabel textColor];
         cell.answerLabel.text = card[AnswerKey];
 
     }
-    cell.color = [UIColor randomColor];
+    if (indexPath.row%2 == 0) {
+        cell.color = [UIColor grayColor];
+
+    }
+    else{
+        
+        cell.color = [UIColor lightGrayColor];
+
+    }
     
     cell.countLabel.text = [NSString stringWithFormat:@"%d",indexPath.row+1];
     

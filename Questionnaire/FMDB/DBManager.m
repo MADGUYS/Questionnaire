@@ -226,7 +226,6 @@ static DBManager *_sharedDBManager;
 //        return DBRowValuesAreNotCorrect;
 //    }
     
-    
     FMDatabase *obj =[FMDatabase databaseWithPath:dbPath];
     BOOL openResult = [obj open];
     if (!openResult) {
@@ -323,6 +322,30 @@ static DBManager *_sharedDBManager;
     }
     return finalArray;
 
+}
+
+
+-(NSArray*)fetchColounFromAllRowsFromTable:(NSString*)tableName ColoumnName:(NSString*)coloumn
+{
+    NSMutableArray *finalArray = [[NSMutableArray alloc] init];
+    FMDatabase *obj =[FMDatabase databaseWithPath:dbPath];
+    BOOL openResult = [obj open];
+    if (!openResult) {
+        return nil;
+    }
+    else{
+        NSString *sql = [NSString stringWithFormat:@"select %@ from %@",coloumn,tableName];
+        // NSString *strQuerry = [NSString stringWithFormat:@"SELECT * FROM contacts WHERE Access = 'Open' AND Accredtiation = 'MD'"];
+        FMResultSet *result = [obj executeQuery:sql];
+        while ([result next]) {
+            //   NSLog(@"%@ >>>>",[result resultDictionary]);
+            [finalArray addObject:[result resultDictionary]];
+            
+        }
+        [obj close];
+    }
+    return finalArray;
+    
 }
 
 -(NSArray*)fetchAllRowsWithQuery:(NSString*)queryString

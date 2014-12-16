@@ -73,4 +73,5 @@
 
 -(NSArray*)fetchRowsByExecutingStatement:(NSString*)statement;
 
+-(NSArray*)fetchColounFromAllRowsFromTable:(NSString*)tableName ColoumnName:(NSString*)coloumn;
 @end
