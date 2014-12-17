@@ -63,7 +63,6 @@
 		9FC79FE41A3F51BB00045154 /* background.png in Resources */ = {isa = PBXBuildFile; fileRef = 9FC79FE21A3F51BB00045154 /* background.png */; };
 		9FC79FE51A3F51BB00045154 /* background@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9FC79FE31A3F51BB00045154 /* background@2x.png */; };
 		9FD561E51A407A660050C123 /* Texture.png in Resources */ = {isa = PBXBuildFile; fileRef = 9FD561E41A407A660050C123 /* Texture.png */; };
-		9FD561E81A409E110050C123 /* SOInsetLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = 9FD561E71A409E110050C123 /* SOInsetLabel.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -163,8 +162,6 @@
 		9FC79FE21A3F51BB00045154 /* background.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = background.png; sourceTree = "<group>"; };
 		9FC79FE31A3F51BB00045154 /* background@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "background@2x.png"; sourceTree = "<group>"; };
 		9FD561E41A407A660050C123 /* Texture.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Texture.png; sourceTree = "<group>"; };
-		9FD561E61A409E110050C123 /* SOInsetLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SOInsetLabel.h; sourceTree = "<group>"; };
-		9FD561E71A409E110050C123 /* SOInsetLabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SOInsetLabel.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -261,8 +258,6 @@
 		9F41B1461A3EB8FE0064D236 /* Questionnaire */ = {
 			isa = PBXGroup;
 			children = (
-				9FD561E61A409E110050C123 /* SOInsetLabel.h */,
-				9FD561E71A409E110050C123 /* SOInsetLabel.m */,
 				9FD561E41A407A660050C123 /* Texture.png */,
 				F84A73AC1A4020F0004BD3F3 /* Third-Party Libraries */,
 				9F41B14B1A3EB8FE0064D236 /* AppDelegate.h */,
@@ -517,7 +512,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				9FD561E81A409E110050C123 /* SOInsetLabel.m in Sources */,
 				9FC79FE01A3F476600045154 /* MyCustomCell.m in Sources */,
 				9F40645C1A3EFE06004DC5D8 /* ShadowView.m in Sources */,
 				9F40645D1A3EFE06004DC5D8 /* TouchThroughUIView.m in Sources */,

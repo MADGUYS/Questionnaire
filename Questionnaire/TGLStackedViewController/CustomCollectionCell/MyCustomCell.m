@@ -81,7 +81,23 @@
 - (void)setTitle:(NSString *)title {
     
     _title = [title copy];
-    self.nameLabel.text = self.title;
+//    self.nameLabel.text = self.title;
+    
+    //Use any font you want or skip defining it
+    UIFont* font = self.nameLabel.font;
+    
+    //Use any color you want or skip defining it
+    UIColor* textColor = self.nameLabel.textColor;
+    
+    NSDictionary *attrs = @{ NSForegroundColorAttributeName : textColor,
+                             NSFontAttributeName : font,
+                             NSTextEffectAttributeName : NSTextEffectLetterpressStyle};
+    
+    NSAttributedString* attrString = [[NSAttributedString alloc]
+                                      initWithString:title
+                                      attributes:attrs];
+    
+    self.nameLabel.attributedText = attrString;
 }
 
 - (void)setColor:(UIColor *)color {
