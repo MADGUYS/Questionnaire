@@ -52,6 +52,8 @@
 		9F41B1A31A3EDD8A0064D236 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9F41B1A21A3EDD8A0064D236 /* AudioToolbox.framework */; };
 		9F41B1A51A3EDDB40064D236 /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9F41B1A41A3EDDB40064D236 /* MobileCoreServices.framework */; };
 		9F41B1A71A3EDDBE0064D236 /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 9F41B1A61A3EDDBE0064D236 /* libz.dylib */; };
+		9F8BB1211A419FBD00761FAE /* star-off.png in Resources */ = {isa = PBXBuildFile; fileRef = 9F8BB11F1A419FBD00761FAE /* star-off.png */; };
+		9F8BB1221A419FBD00761FAE /* star-on.png in Resources */ = {isa = PBXBuildFile; fileRef = 9F8BB1201A419FBD00761FAE /* star-on.png */; };
 		9FC79FC71A3F047400045154 /* ViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9FC79FC61A3F047400045154 /* ViewController.xib */; };
 		9FC79FD41A3F3A2000045154 /* TGLExposedLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = 9FC79FCC1A3F3A2000045154 /* TGLExposedLayout.m */; };
 		9FC79FD51A3F3A2000045154 /* TGLStackedLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = 9FC79FCE1A3F3A2000045154 /* TGLStackedLayout.m */; };
@@ -146,6 +148,8 @@
 		9F41B1A21A3EDD8A0064D236 /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
 		9F41B1A41A3EDDB40064D236 /* MobileCoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MobileCoreServices.framework; path = System/Library/Frameworks/MobileCoreServices.framework; sourceTree = SDKROOT; };
 		9F41B1A61A3EDDBE0064D236 /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = usr/lib/libz.dylib; sourceTree = SDKROOT; };
+		9F8BB11F1A419FBD00761FAE /* star-off.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "star-off.png"; sourceTree = "<group>"; };
+		9F8BB1201A419FBD00761FAE /* star-on.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "star-on.png"; sourceTree = "<group>"; };
 		9FC79FC61A3F047400045154 /* ViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ViewController.xib; sourceTree = "<group>"; };
 		9FC79FCB1A3F3A2000045154 /* TGLExposedLayout.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TGLExposedLayout.h; sourceTree = "<group>"; };
 		9FC79FCC1A3F3A2000045154 /* TGLExposedLayout.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TGLExposedLayout.m; sourceTree = "<group>"; };
@@ -258,6 +262,8 @@
 		9F41B1461A3EB8FE0064D236 /* Questionnaire */ = {
 			isa = PBXGroup;
 			children = (
+				9F8BB11F1A419FBD00761FAE /* star-off.png */,
+				9F8BB1201A419FBD00761FAE /* star-on.png */,
 				9FD561E41A407A660050C123 /* Texture.png */,
 				F84A73AC1A4020F0004BD3F3 /* Third-Party Libraries */,
 				9F41B14B1A3EB8FE0064D236 /* AppDelegate.h */,
@@ -487,11 +493,13 @@
 				9FC79FE51A3F51BB00045154 /* background@2x.png in Resources */,
 				9FC79FE41A3F51BB00045154 /* background.png in Resources */,
 				9FD561E51A407A660050C123 /* Texture.png in Resources */,
+				9F8BB1211A419FBD00761FAE /* star-off.png in Resources */,
 				9F40645A1A3EFE06004DC5D8 /* swipe_guide.psd in Resources */,
 				9F41B18F1A3ED3060064D236 /* SyncDataBase.sqlite in Resources */,
 				9FC79FE11A3F476600045154 /* MyCustomCell.xib in Resources */,
 				9F40645B1A3EFE06004DC5D8 /* swipe_guide2.psd in Resources */,
 				9FC79FD91A3F3AA800045154 /* TGLViewController.xib in Resources */,
+				9F8BB1221A419FBD00761FAE /* star-on.png in Resources */,
 				9F4064571A3EFE05004DC5D8 /* PaperFoldResources.bundle in Resources */,
 				9F41B1581A3EB8FE0064D236 /* LaunchScreen.xib in Resources */,
 				9F41B1551A3EB8FE0064D236 /* Images.xcassets in Resources */,

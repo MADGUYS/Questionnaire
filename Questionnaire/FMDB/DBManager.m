@@ -399,11 +399,8 @@ static DBManager *_sharedDBManager;
             [queryString appendString:@")"];
 
         }
-
-        
         
     }
-    
     //NSLog(@"%@ >>>> createTable",queryString);
     return queryString;
 }
@@ -589,8 +586,9 @@ static DBManager *_sharedDBManager;
     for (int i=0; i<[totalTablesArray count]; i++) {
         
         NSString *tableName = [[totalTablesArray objectAtIndex:i] objectForKey:@"name"];
+        if (![tableName isEqualToString:@"Favorites"]) {
             [[DBManager sharedAppManager] dropTheTable:tableName];
-
+        }
     }
     
 }

@@ -13,8 +13,9 @@
 #define AnswerKey @"Answer"
 #define LevelKey @"Level"
 #define FilterKey @"Filter"
-
-
+#define ObjectId @"ObjectId"
+#define CreatedAt @"CreatedAt"
+#define IsFavorite @"IsFavorite"
 
 @interface CommonAppManager : NSObject{
     
@@ -32,7 +33,12 @@
 @property(nonatomic,strong)NSArray *levelsArray;
 @property(nonatomic,strong)NSArray *filtersArray;
 @property(nonatomic,strong)NSArray *questionsArray;
+@property(nonatomic,strong)NSArray *favArray;
+
 @property(nonatomic,strong)NSString *selectedLevel;
 @property(nonatomic,strong)NSString *selectedFilter;
 
+-(void)saveToFavList:(NSDictionary*)questionDict;
+-(void)deleteFromFav:(NSDictionary*)questionDict;
+-(void)updateFavValueInMainTable:(NSDictionary*)questionDict;
 @end

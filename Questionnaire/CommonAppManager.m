@@ -68,37 +68,19 @@ static CommonAppManager *_sharedAppManager;
 
 -(void)saveDataToLocalDB
 {
+    self.favArray = [[NSArray alloc] initWithArray:[[DBManager sharedAppManager] fetchColounFromAllRowsFromTable:@"Favorites" ColoumnName:ObjectId]];
+    
+    self.favArray = [self.favArray valueForKey:ObjectId];
     
     [[DBManager sharedAppManager] deleteAllTablesFromDB];
     
-    int status =  [[DBManager sharedAppManager] createTableWithName:@"Questions" withColoumns:[NSArray arrayWithObjects:QuestionKey,AnswerKey,LevelKey,FilterKey, nil]];
-    
-//    NSLog(@"%d status",status);
-//    
-//    status = [[DBManager sharedAppManager] createTableWithName:@"Levels" withColoumns:[NSArray arrayWithObjects:LevelKey, nil]];
-//    
-//    NSLog(@"%d status",status);
-//    
-//    status = [[DBManager sharedAppManager] createTableWithName:@"Filters" withColoumns:[NSArray arrayWithObjects:FilterKey, nil]];
-    
-    NSLog(@"%d status",status);
-    
-//    for (int i=0; i<[self.levelsArray count]; i++) {
-//        PFObject *levelObject = [self.levelsArray objectAtIndex:i];
-//         int result = [[DBManager sharedAppManager] insertRowIntoTable:@"Levels" values:levelObject];
-//        NSLog(@"Level Row Insert result = %d",result);
-//    }
-//    
-//    for (int i=0; i<[self.filtersArray count]; i++) {
-//        PFObject *filterObject = [self.filtersArray objectAtIndex:i];
-//        int result = [[DBManager sharedAppManager] insertRowIntoTable:@"Filters" values:filterObject];
-//        NSLog(@"filter Row Insert result = %d",result);
-//
-//    }
-    
+    int status =  [[DBManager sharedAppManager] createTableWithName:@"Questions" withColoumns:[NSArray arrayWithObjects:ObjectId,CreatedAt,QuestionKey,AnswerKey,LevelKey,FilterKey,IsFavorite, nil]];
+
+    status =  [[DBManager sharedAppManager] createTableWithName:@"Favorites" withColoumns:[NSArray arrayWithObjects:ObjectId,CreatedAt,QuestionKey,AnswerKey,LevelKey,FilterKey,IsFavorite, nil]];
+
     for (int i=0; i<[self.questionsArray count]; i++) {
         PFObject *questionObject = [self.questionsArray objectAtIndex:i];
-        int result = [[DBManager sharedAppManager] insertRowIntoTable:@"Questions" values:questionObject];
+        int result = [[DBManager sharedAppManager] insertRowIntoTable:@"Questions" values:[self getDictionaryFromPFObject:questionObject]];
         NSLog(@"question Row Insert result = %d",result);
 
     }
@@ -106,11 +88,68 @@ static CommonAppManager *_sharedAppManager;
     [self getDataFromLocalDB];
 }
 
+-(void)saveToFavList:(NSDictionary*)questionDict
+{
+    
+    int result = [[DBManager sharedAppManager] insertRowIntoTable:@"Favorites" values:questionDict];
+    NSLog(@"FAV Row Insert result = %d",result);
+    
+}
+
+-(void)deleteFromFav:(NSDictionary*)questionDict
+{
+    
+    NSLog(@"%@ >>>>>",[NSString stringWithFormat:@"DELETE FROM Favorites WHERE %@ = '%@'",ObjectId,[questionDict objectForKey:ObjectId]]);
+    int result = [[DBManager sharedAppManager] DeleteRow:[NSString stringWithFormat:@"DELETE FROM Favorites WHERE %@ = '%@'",ObjectId,[questionDict objectForKey:ObjectId]]];
+
+    NSLog(@"FAV Row DELETE result = %d",result);
+    
+}
+
+-(void)updateFavValueInMainTable:(NSDictionary*)questionDict
+{
+    int result = [[DBManager sharedAppManager] updateRowInTable:@"Questions" updateColumns:[NSArray arrayWithObjects:IsFavorite, nil] updateWithValues:[NSArray arrayWithObjects:[questionDict objectForKey:IsFavorite], nil] matchingColoumns:[NSArray arrayWithObjects:ObjectId, nil] matchingColoumnWithValues:[NSArray arrayWithObjects:[questionDict objectForKey:ObjectId], nil]];
+    
+    NSLog(@"FAV Row Update result = %d",result);
+
+    
+}
+
+-(NSDictionary*)getDictionaryFromPFObject:(PFObject*)object
+{
+    
+    NSString *dateString = [NSDateFormatter localizedStringFromDate:object.createdAt
+                                                          dateStyle:NSDateFormatterShortStyle
+                                                          timeStyle:NSDateFormatterFullStyle];
+    NSLog(@"%@",dateString);
+    
+    NSMutableDictionary *dict = [[NSMutableDictionary alloc] init];
+    [dict setObject:object.objectId ? object.objectId :@" " forKey:ObjectId];
+    [dict setObject:dateString ? dateString :@" " forKey:CreatedAt];
+    [dict setObject:[object valueForKey:QuestionKey] ? [object valueForKey:QuestionKey] : @" " forKey:QuestionKey];
+    if ([self.favArray containsObject:object.objectId]) {
+        [dict setObject:[NSString stringWithFormat:@"YES"] forKey:IsFavorite];
+
+    }
+    else{
+        
+        [dict setObject:[NSString stringWithFormat:@"NO"] forKey:IsFavorite];
+
+    }
+    
+    [dict setObject:[object valueForKey:AnswerKey] ? [object valueForKey:AnswerKey] : @" " forKey:AnswerKey];
+    [dict setObject:[object valueForKey:LevelKey] ? [object valueForKey:LevelKey] : @" " forKey:LevelKey];
+    [dict setObject:[object valueForKey:FilterKey] ? [object valueForKey:FilterKey] : @" " forKey:FilterKey];
+    
+    return dict;
+}
+
 -(void)getDataFromLocalDB
 {
     self.levelsArray = nil;
     self.filtersArray = nil;
     self.questionsArray = nil;
+    self.favArray = nil;
     
     self.levelsArray = [[NSArray alloc] initWithArray:[[DBManager sharedAppManager] fetchColounFromAllRowsFromTable:@"Questions" ColoumnName:LevelKey]];
     

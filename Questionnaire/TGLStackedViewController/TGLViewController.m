@@ -145,6 +145,17 @@
     MyCustomCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"CardCell" forIndexPath:indexPath];
     
     NSDictionary *card = [[CommonAppManager sharedAppManager] questionsArray][indexPath.item];
+    [cell setQuestionDict:card];
+    
+    if ([[card objectForKey:IsFavorite] isEqualToString:@"YES"]) {
+        
+        [cell setIsFavorite:YES];
+    }
+    else{
+        
+        [cell setIsFavorite:NO];
+
+    }
     
     if (![card[QuestionKey] isKindOfClass:[NSNull class]]) {
         [cell.nameLabel setTextColor:[UIColor randomColor]];
@@ -206,7 +217,6 @@
     [[CommonAppManager sharedAppManager] setSelectedFilter:@"CGContext"];
     [[CommonAppManager sharedAppManager] setSelectedLevel:@"Level 1"];
     [[CommonAppManager sharedAppManager] getNewListOfQuestions];
-    
     
 }
 

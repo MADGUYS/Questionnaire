@@ -8,15 +8,22 @@
 
 #import <UIKit/UIKit.h>
 
-@interface MyCustomCell : UICollectionViewCell
+@interface MyCustomCell : UICollectionViewCell{
+    
+    
+    
+    
+}
 
+@property (nonatomic)BOOL isFavorite;
 @property (copy, nonatomic) NSString *title;
 @property (copy, nonatomic) UIColor *color;
 
 @property (weak, nonatomic) IBOutlet UILabel *nameLabel;
-@property (weak, nonatomic) IBOutlet UIImageView *imageView;
-
 @property (weak, nonatomic) IBOutlet UILabel *answerLabel;
 @property (weak, nonatomic) IBOutlet UILabel *countLabel;
+@property (weak, nonatomic) IBOutlet UIButton *starButton;
+@property (assign, nonatomic) NSMutableDictionary *questionDict;
 
+- (IBAction)starButtonTapped:(id)sender;
 @end

@@ -9,8 +9,10 @@
 #import "MyCustomCell.h"
 #import <UIKit/UIKit.h>
 #import <QuartzCore/QuartzCore.h>
+#import "CommonAppManager.h"
 
 @implementation MyCustomCell
+@synthesize questionDict;
 
 - (id)initWithFrame:(CGRect)frame
 {
@@ -36,7 +38,7 @@
     //self.imageView.image = [image imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
     
 
-    
+    self.isFavorite= NO;
  
     [self.contentView.layer setCornerRadius:20];
     [self.contentView.layer setMasksToBounds:YES];
@@ -106,6 +108,20 @@
     //self.imageView.tintColor = self.color;
 }
 
+-(void)setIsFavorite:(BOOL)isFavorite
+{
+    _isFavorite = isFavorite;
+    
+    if (isFavorite) {
+        
+        [self.starButton setImage:[UIImage imageNamed:@"star-on.png"] forState:UIControlStateNormal];
+    }
+    else{
+        
+        [self.starButton setImage:[UIImage imageNamed:@"star-off.png"] forState:UIControlStateNormal];
+
+    }
+}
 
 /*
 // Only override drawRect: if you perform custom drawing.
@@ -116,4 +132,25 @@
 }
 */
 
+- (IBAction)starButtonTapped:(id)sender {
+    
+    NSLog(@"%@ >>>",self.questionDict);
+    if ([[self.questionDict objectForKey:IsFavorite] isEqualToString:@"YES"]) {
+        
+        [[CommonAppManager sharedAppManager] deleteFromFav:self.questionDict];
+        [self.questionDict setObject:@"NO" forKey:IsFavorite];
+    }
+    else{
+        
+        [[CommonAppManager sharedAppManager] saveToFavList:self.questionDict];
+        [self.questionDict setObject:@"YES" forKey:IsFavorite];
+
+    }
+    
+    [[CommonAppManager sharedAppManager] updateFavValueInMainTable:self.questionDict];
+    
+    self.isFavorite = !self.isFavorite;
+    
+    
+}
 @end
