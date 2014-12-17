@@ -44,67 +44,120 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return [[CommonAppManager sharedAppManager] levelsArray].count;
+    return 5;
+}
+
+-(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    
+    return 110;
+    
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     static NSString *CellIdentifier = @"Cell";
     
-    PFObject *object = [[[CommonAppManager sharedAppManager] levelsArray] objectAtIndex:indexPath.row];
     
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
-    if (!cell) cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
-    if (object && ![[object valueForKey:LevelKey] isKindOfClass:[NSNull class]]) {
+    if (!cell){
         
-        cell.textLabel.textColor =[UIColor whiteColor];
-        cell.textLabel.text = [object valueForKey:LevelKey];
+        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
+        
 
+    
+    NSString *imageName = nil;
+    
+    switch (indexPath.row) {
+        case 0:
+            imageName = @"Sync.png";
+            break;
+        case 1:
+            imageName = @"Biginner.png";
+            break;
+        case 2:
+            imageName = @"Intermediate.png";
+            break;
+        case 3:
+            imageName = @"Expert.png";
+            break;
+        case 4:
+            imageName = @"star-on.png";
+            break;
+            
+        default:
+            break;
     }
-    if (indexPath.row%2 == 0) {
-        cell.backgroundColor = [UIColor grayColor];
-        
-    }
-    else{
-        
-        cell.backgroundColor = [UIColor lightGrayColor];
-        
+    
+    
+    UIImageView *iconImage = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 80, 80)];
+    [iconImage setImage:[UIImage imageNamed:imageName]];
+    [iconImage setBackgroundColor:[UIColor clearColor]];
+    [cell setSelectionStyle:UITableViewCellSelectionStyleNone];
+    [tableView setSeparatorStyle:UITableViewCellSeparatorStyleNone];
+    [cell.contentView addSubview:iconImage];
+    iconImage.center = CGPointMake(self.view.frame.size.width/2, iconImage.center.y);
     }
     return cell;
 }
 
-- (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
-    
-    UIView *headerView = [[UIView alloc] initWithFrame:CGRectMake(0,0,tableView.frame.size.width,40)];
-    [headerView setBackgroundColor:[UIColor lightGrayColor]];
-    
-    UIButton *addButton = [[UIButton alloc] init];
-        [addButton setTitle:@"Sync" forState:UIControlStateNormal];
-    addButton.backgroundColor = [UIColor clearColor];
-    [addButton setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
-    [addButton setFrame:CGRectMake(tableView.frame.size.width-90, 0, 90, 40)];
-    [addButton addTarget:self action:@selector(syncTapped) forControlEvents:UIControlEventTouchUpInside];
-    [headerView addSubview:addButton];
-    
-    return headerView;
-    
-}
-
--(float)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
-    
-    return  40.0;
-}
+//- (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
+//    
+//    UIView *headerView = [[UIView alloc] initWithFrame:CGRectMake(0,0,tableView.frame.size.width,40)];
+//    [headerView setBackgroundColor:[UIColor lightGrayColor]];
+//    
+//    UIButton *addButton = [[UIButton alloc] init];
+//        [addButton setTitle:@"Sync" forState:UIControlStateNormal];
+//    addButton.backgroundColor = [UIColor clearColor];
+//    [addButton setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+//    [addButton setFrame:CGRectMake(tableView.frame.size.width-90, 0, 90, 40)];
+//    [addButton addTarget:self action:@selector(syncTapped) forControlEvents:UIControlEventTouchUpInside];
+//    [headerView addSubview:addButton];
+//    
+//    return headerView;
+//    
+//}
+//
+//-(float)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
+//    
+//    return  40.0;
+//}
 
 #pragma mark - Table view delegate
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    PFObject *object = [[[CommonAppManager sharedAppManager] levelsArray] objectAtIndex:indexPath.row];
-   
-    if (object && ![[object valueForKey:LevelKey] isKindOfClass:[NSNull class]]) {
-
-        [[CommonAppManager sharedAppManager] setSelectedLevel:[object valueForKey:LevelKey]];
-        [[CommonAppManager sharedAppManager] getNewListOfQuestions];
+    
+    switch (indexPath.row) {
+        case 0:
+            [self syncTapped];
+            break;
+        case 1:{
+            
+            [[CommonAppManager sharedAppManager] setSelectedLevel:@"Level 1"];
+            [[CommonAppManager sharedAppManager] getNewListOfQuestions];
+        }
+            break;
+        case 2:{
+            
+            [[CommonAppManager sharedAppManager] setSelectedLevel:@"Level 2"];
+            [[CommonAppManager sharedAppManager] getNewListOfQuestions];
+        }
+            break;
+        case 3:{
+            
+            [[CommonAppManager sharedAppManager] setSelectedLevel:@"Level 3"];
+            [[CommonAppManager sharedAppManager] getNewListOfQuestions];
+        }
+            break;
+        case 4:{
+            
+            [[CommonAppManager sharedAppManager] setSelectedFilter:nil];
+            [[CommonAppManager sharedAppManager] getFavQuestionsList];
+        }
+            break;
+        default:
+            break;
     }
     
     [[NSNotificationCenter defaultCenter] postNotificationName:@"ShowDefaultView" object:nil];

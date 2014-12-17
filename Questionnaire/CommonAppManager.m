@@ -189,6 +189,17 @@ static CommonAppManager *_sharedAppManager;
 
 }
 
+-(void)getFavQuestionsList
+{
+    
+    NSMutableDictionary *filterDict = [[NSMutableDictionary alloc] init];
+    
+    self.questionsArray = [[NSArray alloc] initWithArray:[[DBManager sharedAppManager] filterQuerryAndFetchTheList:filterDict sortDict:nil withTable:@"Favorites"]];
+    
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"SyncCompleted" object:nil];
+    
+}
+
 -(void)addQuestion:(NSDictionary*)dictionary
 {
     PFObject *object = [PFObject objectWithClassName:@"Questions"];

@@ -41,4 +41,6 @@
 -(void)saveToFavList:(NSDictionary*)questionDict;
 -(void)deleteFromFav:(NSDictionary*)questionDict;
 -(void)updateFavValueInMainTable:(NSDictionary*)questionDict;
+
+-(void)getFavQuestionsList;
 @end
