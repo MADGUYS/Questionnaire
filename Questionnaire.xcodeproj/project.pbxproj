@@ -69,6 +69,8 @@
 		9FFE3E971A41E98100C40D1D /* star-on.png in Resources */ = {isa = PBXBuildFile; fileRef = 9FFE3E901A41E98100C40D1D /* star-on.png */; };
 		9FFE3E981A41E98100C40D1D /* Sync.png in Resources */ = {isa = PBXBuildFile; fileRef = 9FFE3E911A41E98100C40D1D /* Sync.png */; };
 		9FFE3E991A41E98100C40D1D /* Texture.png in Resources */ = {isa = PBXBuildFile; fileRef = 9FFE3E921A41E98100C40D1D /* Texture.png */; };
+		F8EFF3231A42AB8300672DB2 /* iAd.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F8EFF3221A42AB8300672DB2 /* iAd.framework */; };
+		F8EFF3261A42AD8300672DB2 /* UIColor+BrandColors.m in Sources */ = {isa = PBXBuildFile; fileRef = F8EFF3251A42AD8300672DB2 /* UIColor+BrandColors.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -174,6 +176,9 @@
 		9FFE3E901A41E98100C40D1D /* star-on.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "star-on.png"; sourceTree = "<group>"; };
 		9FFE3E911A41E98100C40D1D /* Sync.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Sync.png; sourceTree = "<group>"; };
 		9FFE3E921A41E98100C40D1D /* Texture.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Texture.png; sourceTree = "<group>"; };
+		F8EFF3221A42AB8300672DB2 /* iAd.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = iAd.framework; path = System/Library/Frameworks/iAd.framework; sourceTree = SDKROOT; };
+		F8EFF3241A42AD8300672DB2 /* UIColor+BrandColors.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "UIColor+BrandColors.h"; path = "Categories/UIColor+BrandColors.h"; sourceTree = "<group>"; };
+		F8EFF3251A42AD8300672DB2 /* UIColor+BrandColors.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UIColor+BrandColors.m"; path = "Categories/UIColor+BrandColors.m"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -181,6 +186,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F8EFF3231A42AB8300672DB2 /* iAd.framework in Frameworks */,
 				9F41B1A71A3EDDBE0064D236 /* libz.dylib in Frameworks */,
 				9F41B1A51A3EDDB40064D236 /* MobileCoreServices.framework in Frameworks */,
 				9F41B1A31A3EDD8A0064D236 /* AudioToolbox.framework in Frameworks */,
@@ -252,6 +258,7 @@
 			isa = PBXGroup;
 			children = (
 				F84A73AE1A40212C004BD3F3 /* Frameworks */,
+				F8EFF3271A42AD8C00672DB2 /* Categories */,
 				9F41B1461A3EB8FE0064D236 /* Questionnaire */,
 				9F41B1601A3EB8FE0064D236 /* QuestionnaireTests */,
 				9F41B1451A3EB8FE0064D236 /* Products */,
@@ -413,6 +420,7 @@
 		F84A73AE1A40212C004BD3F3 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				F8EFF3221A42AB8300672DB2 /* iAd.framework */,
 				9F41B1A61A3EDDBE0064D236 /* libz.dylib */,
 				9F41B1A41A3EDDB40064D236 /* MobileCoreServices.framework */,
 				9F41B1A21A3EDD8A0064D236 /* AudioToolbox.framework */,
@@ -427,6 +435,16 @@
 				9F41B1901A3ED40F0064D236 /* libsqlite3.0.dylib */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		F8EFF3271A42AD8C00672DB2 /* Categories */ = {
+			isa = PBXGroup;
+			children = (
+				F8EFF3241A42AD8300672DB2 /* UIColor+BrandColors.h */,
+				F8EFF3251A42AD8300672DB2 /* UIColor+BrandColors.m */,
+			);
+			name = Categories;
+			path = Questionnaire;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -546,6 +564,7 @@
 			files = (
 				9FC79FE01A3F476600045154 /* MyCustomCell.m in Sources */,
 				9F40645C1A3EFE06004DC5D8 /* ShadowView.m in Sources */,
+				F8EFF3261A42AD8300672DB2 /* UIColor+BrandColors.m in Sources */,
 				9F40645D1A3EFE06004DC5D8 /* TouchThroughUIView.m in Sources */,
 				9F41B1501A3EB8FE0064D236 /* ViewController.m in Sources */,
 				9F41B14D1A3EB8FE0064D236 /* AppDelegate.m in Sources */,
@@ -722,6 +741,7 @@
 					"$(inherited)",
 				);
 				INFOPLIST_FILE = QuestionnaireTests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Questionnaire.app/Questionnaire";
@@ -737,6 +757,7 @@
 					"$(inherited)",
 				);
 				INFOPLIST_FILE = QuestionnaireTests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Questionnaire.app/Questionnaire";

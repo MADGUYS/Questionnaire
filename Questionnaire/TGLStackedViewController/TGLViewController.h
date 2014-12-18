@@ -24,11 +24,14 @@
 //  THE SOFTWARE.
 
 #import <UIKit/UIKit.h>
+#import <iAd/iAd.h>
+#import "UIColor+BrandColors.h"
 
 #import "TGLStackedViewController.h"
 
 @interface TGLViewController : TGLStackedViewController
 
 @property (nonatomic, assign) BOOL doubleTapToClose;
+@property (nonatomic, strong) NSArray *arrBrandColors;
 
 @end

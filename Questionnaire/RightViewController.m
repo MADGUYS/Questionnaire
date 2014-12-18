@@ -20,7 +20,7 @@
     if (self) {
         // Custom initialization
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(syncComplete) name:@"SyncCompleted" object:nil];
-
+        [self.tableView.layer  setCornerRadius:10.0f];
     }
     return self;
 }
