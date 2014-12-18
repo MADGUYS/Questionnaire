@@ -33,9 +33,6 @@
     
     self.contentView.backgroundColor  = [UIColor colorWithPatternImage:[UIImage imageNamed:@"Texture.png"]];
     
-    UIImage *image = [[UIImage imageNamed:@"Texture.png"] resizableImageWithCapInsets:UIEdgeInsetsMake(10.0, 10.0, 10.0, 10.0)];
-    
-    //self.imageView.image = [image imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
     
 
     self.isFavorite= NO;
@@ -44,16 +41,31 @@
     [self.contentView.layer setMasksToBounds:YES];
     [self.contentView.layer setBorderColor:[UIColor clearColor].CGColor];
     [self.contentView.layer setBorderWidth:2];
-    
+//
     [self.layer setBorderColor:[UIColor colorWithRed:213.0/255.0f green:210.0/255.0f blue:199.0/255.0f alpha:1.0f].CGColor];
     [self.layer setBorderWidth:1.0f];
     [self.layer setCornerRadius:20.0f];
+
+   // [self performSelectorInBackground:@selector(appLyShadow) withObject:nil];
+    
+    self.layer.masksToBounds = NO;
+   
+    self.layer.shadowPath = [UIBezierPath bezierPathWithRect:self.layer.bounds].CGPath;
+    
+    [self.layer setMasksToBounds:NO];
     [self.layer setShadowOffset:CGSizeMake(0, 1)];
     [self.layer setShadowColor:[[UIColor darkGrayColor] CGColor]];
     [self.layer setShadowRadius:8.0];
-    [self.layer setShadowOpacity:0.8];
-    [self.layer setMasksToBounds:NO];
+    [self.layer setShadowOpacity:1.0];
+    //[self.layer setShouldRasterize:YES];
 
+}
+
+-(void)appLyShadow
+{
+    
+    
+    
 }
 
 - (UIImage *)generatePhotoStackWithImage:(UIImage *)image {

@@ -70,6 +70,9 @@
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(syncComplete) name:@"SyncCompleted" object:nil];
     
+    
+    [self.collectionView setShowsVerticalScrollIndicator:NO];
+    
     // Set to NO to prevent a small number
     // of cards from filling the entire
     // view height evenly and only show
@@ -208,7 +211,19 @@
     NSLog(@"Filters Array : %@",[[CommonAppManager sharedAppManager] filtersArray]);
     NSLog(@"Questions Array : %@",[[CommonAppManager sharedAppManager] questionsArray]);
     
+    
+    
     [self.collectionView reloadData];
+    if ([[CommonAppManager sharedAppManager] questionsArray].count) {
+        
+        [self.collectionView scrollToItemAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0] atScrollPosition:UICollectionViewScrollPositionTop animated:NO];
+
+    }
+    if (self.exposedItemIndexPath) {
+        
+        [self setExposedItemIndexPath:nil];
+        
+    }
     
 }
 
