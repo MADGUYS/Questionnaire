@@ -44,6 +44,8 @@
         maskLayer.frame = self.view.bounds;
         maskLayer.path = maskPath.CGPath;
         self.tableView.layer.mask = maskLayer;
+        
+        self.tableView.separatorColor = [UIColor colorWithRed:0.165 green:0.122 blue:0.122 alpha:1.000];
 
     }
     return self;

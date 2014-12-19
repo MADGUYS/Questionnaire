@@ -30,6 +30,9 @@
         maskLayer.frame = self.view.bounds;
         maskLayer.path = maskPath.CGPath;
         self.tableView.layer.mask = maskLayer;
+        
+        
+        self.tableView.separatorColor = [UIColor colorWithRed:0.165 green:0.122 blue:0.122 alpha:1.000];
 }
     return self;
 }
@@ -73,8 +76,6 @@
     if (indexPath.row == 0) {
         
         cell.textLabel.text = @"All";
-
-        
     }
     
     else{
@@ -83,22 +84,11 @@
 
         if (object && ![[object valueForKey:FilterKey] isKindOfClass:[NSNull class]]) {
             
-            cell.textLabel.textColor = [UIColor whiteColor];
+            cell.textLabel.textColor = [UIColor colorWithRed:0.165 green:0.122 blue:0.122 alpha:1.000];
             cell.textLabel.text = [object valueForKey:FilterKey];
             
         }
     }
-    
-    if (indexPath.row%2 == 0) {
-        cell.backgroundColor = [UIColor grayColor];
-        
-    }
-    else{
-        
-        cell.backgroundColor = [UIColor lightGrayColor];
-        
-    }
-    
     return cell;
 }
 

@@ -104,15 +104,9 @@
     UINib *cellNib = [UINib nibWithNibName:@"MyCustomCell" bundle:nil];
    
     [self.collectionView registerNib:cellNib forCellWithReuseIdentifier:@"CardCell"];
+        self.arrBrandColors = [self brandColors];
     
-    self.arrBrandColors = [self brandColors];
-    
 
-}
-
-- (UIStatusBarStyle)preferredStatusBarStyle {
-
-    return UIStatusBarStyleLightContent;
 }
 
 #pragma mark - Accessors
@@ -171,13 +165,12 @@
     if (![card[QuestionKey] isKindOfClass:[NSNull class]]) {
         [cell.nameLabel setTextColor:self.arrBrandColors[arc4random_uniform(self.arrBrandColors.count)]];
         cell.title = card[QuestionKey];
-        cell.countLabel.textColor = [cell.nameLabel textColor];
         
     }
     if (![card[AnswerKey] isKindOfClass:[NSNull class]]) {
         
-        cell.answerLabel.textColor = [UIColor colorWithRed:0.165 green:0.122 blue:0.122 alpha:1.000];
-        cell.answerLabel.text = card[AnswerKey];
+        cell.answerTextField.textColor = [UIColor colorWithRed:0.165 green:0.122 blue:0.122 alpha:1.000];
+        cell.answerTextField.text = card[AnswerKey];
 
     }
     if (indexPath.row%2 == 0) {
@@ -188,6 +181,7 @@
         cell.color = [UIColor lightGrayColor];
     }
     
+    cell.countLabel.textColor = [UIColor colorWithRed:0.165 green:0.122 blue:0.122 alpha:1.000];
     cell.countLabel.text = [NSString stringWithFormat:@"%d",indexPath.row+1];
     
     return cell;

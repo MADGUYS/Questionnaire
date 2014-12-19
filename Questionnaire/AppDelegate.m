@@ -41,6 +41,9 @@
     
     UINavigationController *navController = [[UINavigationController alloc] initWithRootViewController:contentViewController];
     [navController.navigationBar setHidden:YES];
+    [navController.view setBackgroundColor:[UIColor colorWithRed:0.165 green:0.122 blue:0.122 alpha:1.000]];
+    [navController.view.superview setBackgroundColor:[UIColor colorWithRed:0.165 green:0.122 blue:0.122 alpha:1.000]];
+
     
     
     PaperFoldNavigationController *paperFoldNavController = [[PaperFoldNavigationController alloc] initWithRootViewController:navController];
