@@ -21,6 +21,18 @@
     self = [super initWithStyle:style];
     if (self) {
         // Custom initialization
+        
+        UIView *backView =[[UIView alloc] initWithFrame:CGRectMake(150, 0, 5, self.view.frame.size.height)];
+        [backView setBackgroundColor:[UIColor whiteColor]];
+        [self.view addSubview:backView];
+        
+        CALayer *layer = backView.layer;
+        layer.shadowOffset = CGSizeMake(-1, -1);
+        layer.shadowColor = [[UIColor blackColor] CGColor];
+        layer.shadowRadius = 7.0f;
+        layer.shadowOpacity = 1.0f;
+        layer.shadowPath = [[UIBezierPath bezierPathWithRect:layer.bounds] CGPath];
+        
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(syncComplete) name:@"SyncCompleted" object:nil];
         [self.tableView.layer  setCornerRadius:10.0f];
 
