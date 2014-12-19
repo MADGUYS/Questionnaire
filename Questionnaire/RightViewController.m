@@ -20,8 +20,17 @@
     if (self) {
         // Custom initialization
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(syncComplete) name:@"SyncCompleted" object:nil];
-        [self.tableView.layer  setCornerRadius:10.0f];
-    }
+
+        UIBezierPath *maskPath;
+        maskPath = [UIBezierPath bezierPathWithRoundedRect:self.tableView.bounds
+                                         byRoundingCorners:(UIRectCornerBottomRight | UIRectCornerTopRight)
+                                               cornerRadii:CGSizeMake(3.0, 3.0)];
+        
+        CAShapeLayer *maskLayer = [[CAShapeLayer alloc] init];
+        maskLayer.frame = self.view.bounds;
+        maskLayer.path = maskPath.CGPath;
+        self.tableView.layer.mask = maskLayer;
+}
     return self;
 }
 

@@ -98,8 +98,7 @@
     
     [self.collectionView.superview addSubview:bannerView];
     
-    [self.collectionView.layer setCornerRadius:10.0f];
-    [self.view setBackgroundColor:[UIColor brownColor]];
+    [self.view setBackgroundColor:[UIColor colorWithRed:0.165 green:0.122 blue:0.122 alpha:1.000]];
 
     
     UINib *cellNib = [UINib nibWithNibName:@"MyCustomCell" bundle:nil];

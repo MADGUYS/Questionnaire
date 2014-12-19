@@ -50,11 +50,14 @@
     UINavigationController *leftNavController = [[UINavigationController alloc] initWithRootViewController:leftViewController];
     [leftNavController setNavigationBarHidden:YES];
     [paperFoldNavController setLeftViewController:leftNavController width:150];
+    [leftNavController.view setBackgroundColor:[UIColor colorWithRed:0.165 green:0.122 blue:0.122 alpha:1.000]];
     
     RightViewController *rightViewController = [[RightViewController alloc] init];
     UINavigationController *rightNavController = [[UINavigationController alloc] initWithRootViewController:rightViewController];
     [rightNavController setNavigationBarHidden:YES];
     [paperFoldNavController setRightViewController:rightNavController width:150.0 rightViewFoldCount:3 rightViewPullFactor:0.9];
+    [rightNavController.view setBackgroundColor:[UIColor colorWithRed:0.165 green:0.122 blue:0.122 alpha:1.000]];
+
     
     BOOL isSyncSuccess = [[NSUserDefaults standardUserDefaults] boolForKey:@"ISSyncSuccess"];
     
