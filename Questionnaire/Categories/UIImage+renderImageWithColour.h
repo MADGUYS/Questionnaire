@@ -11,5 +11,4 @@
 @interface UIImage (renderImageWithColour)
 
 - (UIImage *)imageWithOverlayColor:(UIColor *)color;
-
 @end

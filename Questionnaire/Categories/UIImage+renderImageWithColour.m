@@ -23,6 +23,7 @@
     }
     else {
         UIGraphicsBeginImageContext(self.size);
+        
     }
     
     [self drawInRect:rect];
