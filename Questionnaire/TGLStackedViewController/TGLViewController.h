@@ -29,7 +29,8 @@
 
 #import "TGLStackedViewController.h"
 
-@interface TGLViewController : TGLStackedViewController
+#import "PaperFoldSwipeHintView.h"
+@interface TGLViewController : TGLStackedViewController <UIScrollViewDelegate>
 
 @property (nonatomic, assign) BOOL doubleTapToClose;
 @property (nonatomic, strong) NSArray *arrBrandColors;

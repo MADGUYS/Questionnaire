@@ -36,8 +36,9 @@
     int success = [db1 createEditableCopyOfDB:@"SyncDataBase.sqlite"];
     
     [Parse setApplicationId:@"zbBECvRVktXCYC76RJ8nY9ZkPo80A2A6qvyhBqDN" clientKey:@"kHcNzQt4atPvKPTtU1D4BePm47PYFKrC7tAQ6Avm"];
-    
+        
     TGLViewController *contentViewController = [[TGLViewController alloc] initWithNibName:@"TGLViewController" bundle:[NSBundle mainBundle]];
+
     
     UINavigationController *navController = [[UINavigationController alloc] initWithRootViewController:contentViewController];
     [navController.navigationBar setHidden:YES];
@@ -52,7 +53,7 @@
     LeftViewController *leftViewController = [[LeftViewController alloc] init];
     UINavigationController *leftNavController = [[UINavigationController alloc] initWithRootViewController:leftViewController];
     [leftNavController setNavigationBarHidden:YES];
-    [paperFoldNavController setLeftViewController:leftNavController width:150];
+    [paperFoldNavController setLeftViewController:leftNavController width:100];
     [leftNavController.view setBackgroundColor:[UIColor colorWithRed:0.165 green:0.122 blue:0.122 alpha:1.000]];
     
     RightViewController *rightViewController = [[RightViewController alloc] init];
@@ -75,6 +76,8 @@
         
     }
     
+    [[UINavigationBar appearance] setBarTintColor:[UIColor colorWithRed:0.165 green:0.122 blue:0.122 alpha:1.000]];
+
 
 
     return YES;

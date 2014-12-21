@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "UIImage+renderImageWithColour.h"
 
 @interface MyCustomCell : UICollectionViewCell{
     

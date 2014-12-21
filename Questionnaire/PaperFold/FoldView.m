@@ -68,7 +68,9 @@
             [_leftView setBackgroundColor:[UIColor colorWithWhite:0.99 alpha:1]];
             [_leftView.layer setAnchorPoint:CGPointMake(0.0, 0.5)];
             [self addSubview:_leftView];
-            [_leftView.shadowView setColorArrays:[NSArray arrayWithObjects:[UIColor colorWithWhite:0 alpha:0.05],[UIColor colorWithWhite:0 alpha:0.6], nil]];
+//            [_leftView.shadowView setColorArrays:[NSArray arrayWithObjects:[UIColor colorWithWhite:0 alpha:0.05],[UIColor colorWithWhite:0 alpha:0.6], nil]];
+            [_leftView.shadowView setColorArrays:[NSArray arrayWithObjects:[UIColor colorWithRed:0.165 green:0.122 blue:0.122 alpha:1.000],[UIColor colorWithRed:0.165 green:0.122 blue:0.122 alpha:1.000], nil]];
+
             
             // set anchor point of the rightView to the right edge
             _rightView = [[FacingView alloc] initWithFrame:CGRectMake(-1*frame.size.width/4,0,frame.size.width/2,frame.size.height)];

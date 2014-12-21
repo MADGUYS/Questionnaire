@@ -30,9 +30,9 @@
         maskLayer.frame = self.view.bounds;
         maskLayer.path = maskPath.CGPath;
         self.tableView.layer.mask = maskLayer;
+        self.tableView.backgroundColor = [UIColor clearColor];
         
-        
-        self.tableView.separatorColor = [UIColor colorWithRed:0.165 green:0.122 blue:0.122 alpha:1.000];
+        self.tableView.separatorColor = [UIColor colorWithRed:0.498 green:0.368 blue:0.368 alpha:1.000];
 }
     return self;
 }
@@ -73,6 +73,12 @@
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     if (!cell) cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
     
+    cell.backgroundColor = [UIColor clearColor];
+    cell.textLabel.textColor = [UIColor whiteColor];
+    cell.textLabel.font = [UIFont fontWithName:@"DIN Alternate" size:16.0f];
+    cell.textLabel.highlightedTextColor = [UIColor redColor];
+
+
     if (indexPath.row == 0) {
         
         cell.textLabel.text = @"All";
@@ -83,12 +89,10 @@
         PFObject *object = [[[CommonAppManager sharedAppManager] filtersArray] objectAtIndex:indexPath.row-1];
 
         if (object && ![[object valueForKey:FilterKey] isKindOfClass:[NSNull class]]) {
-            
-            cell.textLabel.textColor = [UIColor colorWithRed:0.165 green:0.122 blue:0.122 alpha:1.000];
             cell.textLabel.text = [object valueForKey:FilterKey];
-            
         }
     }
+
     return cell;
 }
 

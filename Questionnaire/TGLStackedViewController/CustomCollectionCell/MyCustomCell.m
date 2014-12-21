@@ -126,11 +126,14 @@
     
     if (isFavorite) {
         
-        [self.starButton setImage:[UIImage imageNamed:@"star-on.png"] forState:UIControlStateNormal];
+//        [self.starButton setImage:[UIImage imageNamed:@"star-on.png"] forState:UIControlStateNormal];
+        [self.starButton setImage:[[UIImage imageNamed:@"Favourite7.png"] imageWithOverlayColor:[UIColor redColor]] forState:UIControlStateNormal];
     }
     else{
         
-        [self.starButton setImage:[UIImage imageNamed:@"star-off.png"] forState:UIControlStateNormal];
+//        [self.starButton setImage:[UIImage imageNamed:@"star-off.png"] forState:UIControlStateNormal];
+        [self.starButton setImage:[UIImage imageNamed:@"Favourite7.png"] forState:UIControlStateNormal];
+
 
     }
 }

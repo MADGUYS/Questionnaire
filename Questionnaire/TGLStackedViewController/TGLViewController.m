@@ -92,6 +92,8 @@
     //
     self.unexposedItemsAreSelectable = YES;
     
+    self.collectionView.scrollsToTop = YES;
+    
     [self.collectionView registerClass:[MyCustomCell class] forCellWithReuseIdentifier:@"CardCell"];
     
     ADBannerView *bannerView = [[ADBannerView alloc] initWithFrame:CGRectMake(0,self.collectionView.superview.frame.size.height - 50,self.collectionView.superview.frame.size.width, 50)];
@@ -100,13 +102,13 @@
     
     [self.view setBackgroundColor:[UIColor colorWithRed:0.165 green:0.122 blue:0.122 alpha:1.000]];
 
+    [self.collectionView setScrollsToTop:YES];
     
     UINib *cellNib = [UINib nibWithNibName:@"MyCustomCell" bundle:nil];
    
     [self.collectionView registerNib:cellNib forCellWithReuseIdentifier:@"CardCell"];
         self.arrBrandColors = [self brandColors];
     
-
 }
 
 #pragma mark - Accessors
@@ -408,6 +410,13 @@
              [UIColor Zendesk],
              [UIColor Zerply],
              [UIColor Zootool]];
+}
+
+- (BOOL)scrollViewShouldScrollToTop:(UIScrollView *)scrollView   // return a yes if you want to scroll to the top. if not defined, assumes YES
+{
+    if (scrollView == self.collectionView)
+        return YES;
+    return YES;
 }
 
 
