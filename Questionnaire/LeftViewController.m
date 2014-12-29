@@ -87,60 +87,63 @@
         
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
         
-
-    
-    NSString *imageName = nil;
-    NSString *labelName = nil;
-    
-    switch (indexPath.row) {
-        case 0:
-            imageName = @"Sync.png";
-            labelName = @"Sync";
-            break;
-        case 1:
-            imageName = @"All2.png";
-            labelName = @"All";
-            break;
-        case 2:
-            imageName = @"Beginner3.png";
-            labelName = @"Beginner";
-            break;
-        case 3:
-            imageName = @"Intermediate4.png";
-            labelName = @"Intermediate";
-            break;
-        case 4:
-            imageName = @"Expert5.png";
-            labelName = @"Expert";
-            break;
-        case 5:
-            imageName = @"Favourite6.png";
-            labelName = @"Favourite";
-            break;
-            
-        default:
-            break;
-    }
-    
-    
-    UIImageView *iconImage = [[UIImageView alloc] initWithFrame:CGRectMake(0, 10, 50, 50)];
-    [iconImage setImage:[UIImage imageNamed:imageName]];
-    [iconImage setBackgroundColor:[UIColor clearColor]];
-//    [cell setSelectionStyle:UITableViewCellSelectionStyleNone];
-    [cell.contentView addSubview:iconImage];
-    iconImage.center = CGPointMake(self.view.frame.size.width/2, iconImage.center.y);
         
-    UILabel *nameLabel = [[UILabel alloc] initWithFrame:CGRectMake(10, iconImage.frame.size.height + 20, self.tableView.frame.size.width - 20, 20)];
-    nameLabel.font = [UIFont fontWithName:@"DIN Alternate" size:14.0f];
-    nameLabel.text = labelName;
+        
+        NSString *imageName = nil;
+        NSString *labelName = nil;
+        
+        switch (indexPath.row) {
+            case 0:
+                imageName = @"sync.png";
+                labelName = @"Sync";
+                break;
+            case 1:
+                imageName = @"forall.png";
+                labelName = @"All";
+                break;
+            case 2:
+                imageName = @"baby.png";
+                labelName = @"Beginner";
+                break;
+            case 3:
+                imageName = @"boy.png";
+                labelName = @"Intermediate";
+                break;
+            case 4:
+                imageName = @"man.png";
+                labelName = @"Expert";
+                break;
+            case 5:
+                imageName = @"heart.png";
+                labelName = @"Favourite";
+                break;
+                
+            default:
+                break;
+        }
+        
+        
+        UIImageView *iconImage = [[UIImageView alloc] initWithFrame:CGRectMake(15, 15, 60, 60)];
+        [iconImage setImage:[UIImage imageNamed:imageName]];
+        [iconImage setBackgroundColor:[UIColor clearColor]];
+        [iconImage setAlpha:0.8];
+        //        iconImage.layer.borderWidth = 1;
+        //        [iconImage setCenter:cell.contentView.center];
+        //    [cell setSelectionStyle:UITableViewCellSelectionStyleNone];
+        [cell.contentView addSubview:iconImage];
+        //    iconImage.center = CGPointMake(self.view.frame.size.width/2, iconImage.center.y);
+        
+        UILabel *nameLabel = [[UILabel alloc] initWithFrame:CGRectMake(10, iconImage.frame.size.height + 20, self.tableView.frame.size.width - 20, 20)];
+        nameLabel.font = [UIFont fontWithName:@"DIN Alternate" size:14.0f];
+        nameLabel.text = labelName;
         nameLabel.textAlignment = NSTextAlignmentCenter;
-    nameLabel.textColor = [UIColor darkGrayColor];
-    [cell.contentView addSubview:nameLabel];
-
-    UIView* separatorLineView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 320, 3)];/// change size as you need.
-    separatorLineView.backgroundColor = [UIColor colorWithRed:0.165 green:0.122 blue:0.122 alpha:1.000];// you can also put image here
-    [cell.contentView addSubview:separatorLineView];
-
+        nameLabel.textColor = [UIColor darkGrayColor];
+        //    [cell.contentView addSubview:nameLabel];
+        
+        UIView* separatorLineView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 320, 1)];/// change size as you need.
+        separatorLineView.backgroundColor = [UIColor colorWithRed:0.165 green:0.122 blue:0.122 alpha:1.000];// you can also put image here
+        [cell.contentView addSubview:separatorLineView];
+        
         nameLabel.highlightedTextColor = [UIColor redColor];
     }
     
@@ -148,10 +151,10 @@
 }
 
 //- (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
-//    
+//
 //    UIView *headerView = [[UIView alloc] initWithFrame:CGRectMake(0,0,tableView.frame.size.width,40)];
 //    [headerView setBackgroundColor:[UIColor lightGrayColor]];
-//    
+//
 //    UIButton *addButton = [[UIButton alloc] init];
 //        [addButton setTitle:@"Sync" forState:UIControlStateNormal];
 //    addButton.backgroundColor = [UIColor clearColor];
@@ -159,13 +162,13 @@
 //    [addButton setFrame:CGRectMake(tableView.frame.size.width-90, 0, 90, 40)];
 //    [addButton addTarget:self action:@selector(syncTapped) forControlEvents:UIControlEventTouchUpInside];
 //    [headerView addSubview:addButton];
-//    
+//
 //    return headerView;
-//    
+//
 //}
 //
 //-(float)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
-//    
+//
 //    return  40.0;
 //}
 
@@ -173,7 +176,7 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-
+    
     switch (indexPath.row) {
         case 0:
             [self syncTapped];
@@ -213,7 +216,7 @@
     }
     
     [[NSNotificationCenter defaultCenter] postNotificationName:@"ShowDefaultView" object:nil];
-
+    
 }
 
 - (BOOL)tableView:(UITableView *)tableView shouldHighlightRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -226,7 +229,7 @@
     [[CommonAppManager sharedAppManager] sync];
     
     [[NSNotificationCenter defaultCenter] postNotificationName:@"ShowDefaultView" object:nil];
-
+    
 }
 
 @end
