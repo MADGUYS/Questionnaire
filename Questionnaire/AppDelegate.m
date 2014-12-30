@@ -25,7 +25,9 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
     
-    self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
+    CGRect frame = [[UIScreen mainScreen] bounds];
+    
+    self.window = [[UIWindow alloc] initWithFrame:frame];
     // Override point for customization after application launch.
     self.window.backgroundColor = [UIColor blueColor];
     [self.window makeKeyAndVisible];
@@ -44,11 +46,10 @@
     [navController.navigationBar setHidden:YES];
     [navController.view setBackgroundColor:[UIColor colorWithRed:0.165 green:0.122 blue:0.122 alpha:1.000]];
     [navController.view.superview setBackgroundColor:[UIColor colorWithRed:0.165 green:0.122 blue:0.122 alpha:1.000]];
-
-    
     
     PaperFoldNavigationController *paperFoldNavController = [[PaperFoldNavigationController alloc] initWithRootViewController:navController];
     [self.window setRootViewController:paperFoldNavController];
+   // [paperFoldNavController.view setFrame:CGRectMake(frame.origin.x, 0, frame.size.width, frame.size.height-20)];
     
     LeftViewController *leftViewController = [[LeftViewController alloc] init];
     UINavigationController *leftNavController = [[UINavigationController alloc] initWithRootViewController:leftViewController];

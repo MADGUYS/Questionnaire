@@ -25,6 +25,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *countLabel;
 @property (weak, nonatomic) IBOutlet UIButton *starButton;
 @property (assign, nonatomic) NSMutableDictionary *questionDict;
+@property (weak, nonatomic) IBOutlet UITextView *questionTextField;
 
 - (IBAction)starButtonTapped:(id)sender;
 @end

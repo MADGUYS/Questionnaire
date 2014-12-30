@@ -58,13 +58,18 @@ static CommonAppManager *_sharedAppManager;
     
     //self.levelsArray = [[NSArray alloc] initWithArray:[self getAllLevelsList]];
     //self.filtersArray = [[NSArray alloc] initWithArray:[self getAllFiltersList]];
-    self.questionsArray = [[NSArray alloc] initWithArray:[self getAllQuestionsFromPrase]];
-    
-    
-    [self saveDataToLocalDB];
+   
+    [self getAllQuestionsFromPrase];
     
 }
 
+
+-(void)afterFetchingData:(NSArray*)array
+{
+    
+    self.questionsArray = [[NSArray alloc] initWithArray:array];
+    [self saveDataToLocalDB];
+}
 
 -(void)saveDataToLocalDB
 {
@@ -218,11 +223,16 @@ static CommonAppManager *_sharedAppManager;
 }
 
 
--(NSArray*)getAllQuestionsFromPrase
+-(void)getAllQuestionsFromPrase
 {
     PFQuery *query = [PFQuery queryWithClassName:@"Questions"]; //1
-    NSArray *dataArray =  [query findObjects];
-    return dataArray;
+    [query setLimit:1000];
+    [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
+        
+        [self afterFetchingData:objects];
+
+        
+    }];
     
 }
 

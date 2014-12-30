@@ -29,7 +29,7 @@
         CAShapeLayer *maskLayer = [[CAShapeLayer alloc] init];
         maskLayer.frame = self.view.bounds;
         maskLayer.path = maskPath.CGPath;
-        self.tableView.layer.mask = maskLayer;
+        //self.tableView.layer.mask = maskLayer;
         self.tableView.backgroundColor = [UIColor clearColor];
         
         self.tableView.separatorColor = [UIColor colorWithRed:0.498 green:0.368 blue:0.368 alpha:1.000];

@@ -64,12 +64,13 @@
 
     [super viewDidLoad];
     
-    self.view.frame = [UIScreen mainScreen].bounds;
+    CGRect frame = [[UIScreen mainScreen] bounds];
 
-    self.collectionView.frame = self.view.frame;
+    self.view.frame = CGRectMake(0, 20, frame.size.width, frame.size.height);
+
+    self.collectionView.frame = CGRectMake(self.view.frame.origin.x, self.view.frame.origin.y, self.view.frame.size.width, self.view.frame.size.height-70);
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(syncComplete) name:@"SyncCompleted" object:nil];
-    
     
     [self.collectionView setShowsVerticalScrollIndicator:NO];
     
@@ -165,9 +166,11 @@
     }
     
     if (![card[QuestionKey] isKindOfClass:[NSNull class]]) {
-        [cell.nameLabel setTextColor:self.arrBrandColors[arc4random_uniform(self.arrBrandColors.count)]];
-        cell.title = card[QuestionKey];
-        
+        //[cell.nameLabel setTextColor:self.arrBrandColors[arc4random_uniform(self.arrBrandColors.count)]];
+        //cell.title = card[QuestionKey];
+        [cell.questionTextField setTextColor:self.arrBrandColors[arc4random_uniform(self.arrBrandColors.count)]];
+        cell.questionTextField.text = card[QuestionKey];
+
     }
     if (![card[AnswerKey] isKindOfClass:[NSNull class]]) {
         
